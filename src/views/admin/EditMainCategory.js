@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // components
 
 import { mainCategoryService } from "data-services/category";
-import CardEditSubCategory from "components/Cards/CardEditSubCategory";
 import CardEditMainCategory from "components/Cards/CardEditMainCategory";
 
 export default function EditMainCategory(props) {

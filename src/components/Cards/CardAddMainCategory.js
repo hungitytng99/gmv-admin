@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import Select from 'react-select';
+import React from "react";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { mainCategoryService } from "data-services/category";
-import { productService } from "data-services/product";
 // components
 
 export default function CardAddMainCategory(props) {

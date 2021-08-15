@@ -6,8 +6,9 @@ import { mainCategoryService } from "data-services/category";
 import CardEditSubCategory from "components/Cards/CardEditSubCategory";
 
 export default function EditSubCategory(props) {
-    const subCategoryId = props.match.params.id;
     const [detailSubCategory, setSubCategory] = useState({});
+    const subCategoryId = props.match.params.id;
+
     useEffect(() => {
         const getDetailSubCategory = async () => {
             const detailSubCategory = await mainCategoryService.detailSubCategoryAsync(subCategoryId);

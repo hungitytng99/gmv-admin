@@ -7,8 +7,6 @@ import CardAddSubCategory from "components/Cards/CardAddSubCategory";
 import CardAddMainCategory from "components/Cards/CardAddMainCategory";
 
 export default function AddCategory(props) {
-    const [listProducts, setListProducts] = useState({});
-
     const addMainCategory = async (values) => {
         const result = await mainCategoryService.createMainCategory(values);
         console.log(result);
@@ -19,8 +17,6 @@ export default function AddCategory(props) {
         console.log(result);
     }
 
-    useEffect(() => {
-    }, [])
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 bg-white">

@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 // components
-
-import CardTable from "components/Cards/CardTable.js";
-import CardListProducts from "components/Cards/CardListProducts";
 import { productService } from "data-services/product/index.js";
 import { mainCategoryService } from "data-services/category";
 import CardListHotProducts from "components/Cards/CardListHotProducts";

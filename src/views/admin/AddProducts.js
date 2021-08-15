@@ -1,9 +1,4 @@
 import React from "react";
-
-// components
-
-import CardSettings from "components/Cards/CardSettings.js";
-import CardProfile from "components/Cards/CardProfile.js";
 import CardAddProducts from "components/Cards/CardAddProducts";
 
 export default function AddProduct() {
