@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // components
+import {
+    EditTwoTone,
+    DeleteTwoTone
+} from '@ant-design/icons';
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
@@ -12,8 +16,8 @@ export default function CardMainSubCategory(props) {
     const { subMain } = props;
     const [subMainState, setMainState] = useState(subMain);
     const handleDeleteSubCategory = async (id) => {
-        const result = await mainCategoryService.deleteSubCategory(id);
-        if (result.data.status == 200) {
+        const response = await mainCategoryService.deleteSubCategory(id);
+        if (response.data.status == 200) {
             let subMainTemp = { ...subMainState };
             subMainTemp.sub_category = subMainTemp.sub_category.filter(item => {
                 if (item.id != id) {
@@ -24,6 +28,13 @@ export default function CardMainSubCategory(props) {
             setMainState(subMainTemp);
         }
     }
+
+    const handleDeleteMainCategory = async (id) => {
+        console.log(id);
+        const response = await mainCategoryService.deleteMainCategory(id);
+        console.log(response);
+    }
+
     return (
         <>
             <div
@@ -32,12 +43,24 @@ export default function CardMainSubCategory(props) {
                 <div className="shadow-lg rounded bg-white">
                     <div className="rounded-t mb-0 px-4 py-3 border-0">
                         <div className="flex flex-wrap justify-between items-center">
-                            <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                            <div className="relative px-4 max-w-full flex-grow flex-1">
                                 <h3
                                     className="font-semibold text-lg text-blueGray-700"
                                 >
                                     {subMainState.name}
                                 </h3>
+                            </div>
+                            <div className="mb-2 flex text-lg">
+                                <a href={`/admin/edit-main-category/${subMainState.id}`} className="block mr-2 hover:cursor-pointer">
+                                    <EditTwoTone />
+                                </a>
+                                <div
+                                    className="mr-2 hover:cursor-pointer"
+                                    onClick={() => handleDeleteMainCategory(subMainState.id)}
+                                >
+                                    <DeleteTwoTone />
+
+                                </div>
                             </div>
                         </div>
                     </div>

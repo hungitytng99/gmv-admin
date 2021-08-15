@@ -4,6 +4,7 @@ import { apiListMainCategory } from "data-source/category";
 import { apiCreateMainCategory } from "data-source/category";
 import { apiUpdateMainCategory } from "data-source/category";
 import { apiDeleteSubCategory } from "data-source/category";
+import { apiDeleteMainCategory } from "data-source/category";
 import { apiUpdateSubCategory } from "data-source/category";
 import { apiCreateSubCategory } from "data-source/category";
 import { apiListSubCategory } from "data-source/category";
@@ -112,8 +113,8 @@ export const mainCategoryService = {
         })
     },
 
-    delteteMainCategory: function (id) {
-        return apiDetailMainCategory(id).then(response => {
+    deleteMainCategory: function (id) {
+        return apiDeleteMainCategory(id).then(response => {
             return response;
         })
     },
