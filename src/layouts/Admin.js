@@ -19,6 +19,7 @@ import ListCategory from "views/admin/ListCategory.js";
 import AddCategory from "views/admin/AddCategory";
 import EditSubCategory from "views/admin/EditSubCategory";
 import EditMainCategory from "views/admin/EditMainCategory";
+import ListHotProduct from "views/admin/ListHotProduct";
 
 export default function Admin() {
   return (
@@ -32,6 +33,8 @@ export default function Admin() {
           <Switch>
             <Route path="/admin/list-products" exact component={ListProducts} />
             <Route path="/admin/add-products" exact component={AddProducts} />
+            <Route path="/admin/list-hot-products" exact component={ListHotProduct} />
+            <Route path="/admin/edit-hot-products/:id" exact component={ListHotProduct} />
 
             <Route path="/admin/category" exact component={ListCategory} />
             <Route path="/admin/add-category" exact component={AddCategory} />

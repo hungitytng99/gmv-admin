@@ -7,6 +7,10 @@ import { apiListProduct } from "data-source/product";
 import { apiListMaterial } from "data-source/product";
 import { apiListProductByMainCategoryName } from "data-source/product";
 import { apiCreateProducts } from "data-source/product";
+import { apiDeleteProducts } from "data-source/product";
+import { apiUnSetHotProduct } from "data-source/product";
+import { apiSetHotProduct } from "data-source/product";
+import { apiUpdateProducts } from "data-source/product";
 import { apiListProductByCategoryAndMaterial } from "data-source/product";
 import { apiListProductBySubCategoryName } from "data-source/product";
 import { apiListProductByCategoryId } from "data-source/product";
@@ -72,16 +76,19 @@ export const productService = {
 
     listHotProductAsync: function (requestParams) {
         return apiListHotProduct(requestParams).then(response => {
+            console.log(response);
             response.data = response.data.map(item => {
                 return {
                     id: item?.id,
                     title: item?.title,
-                    main_image: item?.main_image_url,
+                    image: [item?.main_image_url],
                     price: item?.price,
-                    slug: "product/" + item?.slug
+                    slug: "product/" + item?.slug,
+                    category_id: item?.category_id,
+                    model: item?.model_number,
+                    material: item?.material
                 }
             });
-            response.data = filterSplitHotProduct(response.data);
             return response;
             // return filterSplitHotProduct(response);
         });
@@ -185,7 +192,33 @@ export const productService = {
         return apiCreateProducts(requestParams).then(response => {
             return response;
         })
-    }
+    },
+
+    updateProduct: function (id, requestParams) {
+        return apiUpdateProducts(id, requestParams).then(response => {
+            return response;
+        })
+    },
+
+    deleteProduct: function (id) {
+        return apiDeleteProducts(id).then(response => {
+            return response;
+        })
+    },
+
+    setHotProduct: function (id) {
+        return apiSetHotProduct(id).then(response => {
+            return response;
+        })
+    },
+
+    unSetHotProduct: function (id) {
+        return apiUnSetHotProduct(id).then(response => {
+            return response;
+        })
+    },
+    
+
 }
 
 export const filterSplitHotProduct = (listHotProduct) => {

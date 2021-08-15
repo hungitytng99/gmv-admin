@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-// components
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
-import ProductDropdown from "components/Dropdowns/ProductDropdown";
 
-export default function CardListProducts(props) {
-  const { listProducts = [], handleDeleteProduct, handleEditProduct, handleSetHotProduct  } = props;
+// components
+
+import TableDropdown from "components/Dropdowns/TableDropdown.js";
+import HotProductDropdown from "components/Dropdowns/HotProductDropdown";
+
+export default function CardListHotProducts(props) {
+  const { listProducts = [], handleUnSetHotProduct } = props;
+  console.log(listProducts);
   return (
     <>
       <div
@@ -92,7 +95,7 @@ export default function CardListProducts(props) {
                           {
                             product.image.map((img) => {
                               return (
-                                <img key={img}
+                                <img
                                   src={img}
                                   alt="..."
                                   className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
@@ -109,11 +112,9 @@ export default function CardListProducts(props) {
                         {product.main_category_name}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                        <ProductDropdown
-                          productId={product.id}
-                          handleDeleteProduct={handleDeleteProduct}
-                          handleSetHotProduct={handleSetHotProduct}
-                        />
+                        <HotProductDropdown 
+                        productId={product.id}
+                        handleUnSetHotProduct={handleUnSetHotProduct} />
                       </td>
                     </tr>
                   )

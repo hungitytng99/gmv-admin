@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 
 // components
 
+import CardTable from "components/Cards/CardTable.js";
 import CardListProducts from "components/Cards/CardListProducts";
 import { productService } from "data-services/product/index.js";
 import { mainCategoryService } from "data-services/category";
+import CardListHotProducts from "components/Cards/CardListHotProducts";
 
 export default function Tables(props) {
     const [listProducts, setListProducts] = useState({});
+    const [isReload , setIsReload] = useState(false);
     useEffect(() => {
         const getListProduct = async () => {
-            const listResult = await productService.listProductAsync();
+            const listResult = await productService.listHotProductAsync();
+            console.log(listResult);
             for (let i = 0; i < listResult.data.length; i++) {
                 const subCategory = await mainCategoryService.detailSubCategoryAsync(listResult.data[i].category_id);
                 listResult.data[i].category_name = subCategory.data.name;
@@ -20,23 +24,10 @@ export default function Tables(props) {
             setListProducts(listResult);
         }
         getListProduct();
-    }, [])
-    const handleDeleteProduct = async (id) => {
-        console.log(id);
-        const response = await productService.deleteProduct(id);
-        if (response.data.status === 200) {
-            let listProductsTmp = { ...listProducts };
-            listProductsTmp.data = listProducts.data.filter((item) => {
-                if (Number(item.id) !== Number(id)) {
-                    return item;
-                }
-            })
-            setListProducts(listProductsTmp);
-        }
-    }
-
-    const handleSetHotProduct = async (id) => {
-        const response = await productService.setHotProduct(id);
+    }, [isReload])
+    const handleUnSetHotProduct = async (id) => {
+        const response = await productService.unSetHotProduct(id);
+        setIsReload(true);
         console.log(response);
     }
 
@@ -53,7 +44,7 @@ export default function Tables(props) {
                                     <h3
                                         className="font-semibold text-lg text-blueGray-700"
                                     >
-                                        List products
+                                        List hot products
                                     </h3>
                                 </div>
                                 <a
@@ -68,14 +59,19 @@ export default function Tables(props) {
                                 >
                                     Add product
                                 </a>
+                                <a
+                                    href='/admin/list-products'
+                                    className="bg-gray-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                >
+                                    Back
+                                </a>
 
                             </div>
                         </div>
                     </div>
-                    <CardListProducts
-                        handleSetHotProduct={handleSetHotProduct}
-                        handleDeleteProduct={handleDeleteProduct}
-                        listProducts={listProducts.data}
+                    <CardListHotProducts
+                        handleUnSetHotProduct={handleUnSetHotProduct}
+                        listProducts={listProducts.data} 
                     />
                 </div>
             </div>

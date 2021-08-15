@@ -62,7 +62,12 @@ export default function CardAddProducts() {
                 <div className="rounded-t bg-white mb-0 px-6 py-6">
                     <div className="text-center flex justify-between">
                         <h6 className="text-blueGray-700 text-xl font-bold">Add products</h6>
-
+                        <a
+                            href='/admin/list-products'
+                            className="bg-gray-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                        >
+                            Back
+                        </a>
                     </div>
                 </div>
                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -162,7 +167,7 @@ export default function CardAddProducts() {
                                             >
                                                 Description <span className="text-rose-600">*</span>
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="description"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -185,7 +190,7 @@ export default function CardAddProducts() {
                                             >
                                                 Main images <span className="text-rose-600">*</span>
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="main_image_url"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -202,7 +207,7 @@ export default function CardAddProducts() {
                                             >
                                                 Other images 1
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="url_image1"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -219,7 +224,7 @@ export default function CardAddProducts() {
                                             >
                                                 Other images 2
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="url_image2"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -236,7 +241,7 @@ export default function CardAddProducts() {
                                             >
                                                 Other images 3
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="url_image3"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -253,7 +258,7 @@ export default function CardAddProducts() {
                                             >
                                                 Other images 4
                                             </label>
-                                            <Field 
+                                            <Field
                                                 autoComplete="off"
                                                 name="url_image4"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
