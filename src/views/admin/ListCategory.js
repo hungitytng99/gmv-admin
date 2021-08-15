@@ -14,6 +14,18 @@ export default function ListCategory() {
         }
         getMainSubCategory();
     }, [])
+
+    const handleDeleteMainCategory = async (id) => {
+        const response = await mainCategoryService.deleteMainCategory(id);
+        if (response.data.status == 200) {
+            const mainSubCategoryTmp = mainSubCategory.filter((item) => {
+                if(Number(item.id) !== Number(id)) {
+                    return item;
+                }
+            })
+            setMainSubCategory(mainSubCategoryTmp);
+        }
+    }
     return (
         <>
             <div className="flex flex-wrap">
@@ -41,7 +53,11 @@ export default function ListCategory() {
                     >
                         {mainSubCategory.map((subMain) => {
                             return (
-                                <CardMainSubCategory key={subMain.id} subMain={subMain} />
+                                <CardMainSubCategory
+                                    handleDeleteMainCategory={handleDeleteMainCategory}
+                                    key={subMain.id}
+                                    subMain={subMain} 
+                                />
                             )
                         })}
 

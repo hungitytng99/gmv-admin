@@ -13,7 +13,7 @@ import { useState } from "react/cjs/react.development";
 import { mainCategoryService } from "data-services/category";
 
 export default function CardMainSubCategory(props) {
-    const { subMain } = props;
+    const { subMain, handleDeleteMainCategory } = props;
     const [subMainState, setMainState] = useState(subMain);
     const handleDeleteSubCategory = async (id) => {
         const response = await mainCategoryService.deleteSubCategory(id);
@@ -28,13 +28,6 @@ export default function CardMainSubCategory(props) {
             setMainState(subMainTemp);
         }
     }
-
-    const handleDeleteMainCategory = async (id) => {
-        console.log(id);
-        const response = await mainCategoryService.deleteMainCategory(id);
-        console.log(response);
-    }
-
     return (
         <>
             <div
