@@ -6,9 +6,13 @@ import CardListProducts from "components/Cards/CardListProducts";
 import { productService } from "data-services/product/index.js";
 import { mainCategoryService } from "data-services/category";
 import FullPageLoading from "components/Loading/FullPageLoading";
+import { REQUEST_STATE } from "app-configs";
+import { notification } from 'antd';
+import 'antd/dist/antd.css';
 
-export default function Tables(props) {
+export default function ListProducts(props) {
     const [listProducts, setListProducts] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const getListProduct = async () => {
             const listResult = await productService.listProductAsync();
@@ -22,10 +26,11 @@ export default function Tables(props) {
         }
         getListProduct();
     }, [])
+
     const handleDeleteProduct = async (id) => {
-        console.log(id);
+        setIsLoading(true);
         const response = await productService.deleteProduct(id);
-        if (response.data.status === 200) {
+        if (response.state === REQUEST_STATE.SUCCESS) {
             let listProductsTmp = { ...listProducts };
             listProductsTmp.data = listProducts.data.filter((item) => {
                 if (Number(item.id) !== Number(id)) {
@@ -33,16 +38,46 @@ export default function Tables(props) {
                 }
             })
             setListProducts(listProductsTmp);
+            notification['success']({
+                message: 'Delete product',
+                description:
+                    'Detele product successfully',
+            });
         }
+
+        if (response.state === REQUEST_STATE.ERROR) {
+            notification['error']({
+                message: 'Delete product',
+                description:
+                    response.data.message,
+            });
+        }
+
+        setIsLoading(false);
     }
 
     const handleSetHotProduct = async (id) => {
+        setIsLoading(true);
         const response = await productService.setHotProduct(id);
-        console.log(response);
+        if (response.state === REQUEST_STATE.SUCCESS) {
+            notification['success']({
+                message: 'Set hot product',
+                description:
+                    response.data.message,
+            });
+        }
+        if (response.state === REQUEST_STATE.ERROR) {
+            notification['error']({
+                message: 'Set hot product',
+                description:
+                    'This product have already been hot product',
+            });
+        }
+        setIsLoading(false);
     }
-
     return (
         <>
+            {isLoading && <FullPageLoading />}
             <div className="flex flex-wrap mt-4">
                 <div className="w-full mb-12 px-4">
                     <div

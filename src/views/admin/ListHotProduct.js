@@ -4,14 +4,18 @@ import React, { useEffect, useState } from "react";
 import { productService } from "data-services/product/index.js";
 import { mainCategoryService } from "data-services/category";
 import CardListHotProducts from "components/Cards/CardListHotProducts";
+import { notification } from 'antd';
+import { REQUEST_STATE } from "app-configs";
+import FullPageLoading from "components/Loading/FullPageLoading";
 
-export default function Tables(props) {
+export default function ListHotProduct() {
     const [listProducts, setListProducts] = useState({});
-    const [isReload , setIsReload] = useState(false);
+    const [isReload, setIsReload] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         const getListProduct = async () => {
             const listResult = await productService.listHotProductAsync();
-            console.log(listResult);
             for (let i = 0; i < listResult.data.length; i++) {
                 const subCategory = await mainCategoryService.detailSubCategoryAsync(listResult.data[i].category_id);
                 listResult.data[i].category_name = subCategory.data.name;
@@ -23,13 +27,31 @@ export default function Tables(props) {
         getListProduct();
     }, [isReload])
     const handleUnSetHotProduct = async (id) => {
+        setIsLoading(true);
         const response = await productService.unSetHotProduct(id);
-        setIsReload(true);
-        console.log(response);
+        setIsReload(!isReload);
+        if (response.state === REQUEST_STATE.SUCCESS) {
+            notification['success']({
+                message: 'Remove hot product',
+                description:
+                    response.data.message,
+            });
+        }
+
+        if (response.state === REQUEST_STATE.ERROR) {
+            notification['error']({
+                message: 'Remove hot product',
+                description:
+                    'An error occur when remove hot product',
+            });
+        }
+        setIsLoading(false);
+
     }
 
     return (
         <>
+            {isLoading && <FullPageLoading />}
             <div className="flex flex-wrap mt-4">
                 <div className="w-full mb-12 px-4">
                     <div
@@ -68,7 +90,7 @@ export default function Tables(props) {
                     </div>
                     <CardListHotProducts
                         handleUnSetHotProduct={handleUnSetHotProduct}
-                        listProducts={listProducts.data} 
+                        listProducts={listProducts.data}
                     />
                 </div>
             </div>

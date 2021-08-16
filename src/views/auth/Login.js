@@ -30,8 +30,8 @@ export default function Login() {
     },
     onSubmit: async (values) => {
       const response = await userService.signIn(values);
+      console.log(response);
       if (response.state === REQUEST_STATE.ERROR) {
-        console.log("SHOW");
         openNotificationWithIcon('error');
       } else if (response.state === REQUEST_STATE.SUCCESS) {
         Cookies.set('token', response.data['access-token']);

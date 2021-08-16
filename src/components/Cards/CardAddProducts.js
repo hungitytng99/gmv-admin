@@ -4,16 +4,20 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { mainCategoryService } from "data-services/category";
 import { productService } from "data-services/product";
+import { notification } from 'antd';
+import FullPageLoading from "components/Loading/FullPageLoading";
+import { REQUEST_STATE } from "app-configs";
+import { data } from "autoprefixer";
+
 // components
 
 export default function CardAddProducts() {
     const [subCategoryOption, setSubCategoryOption] = useState({ label: '', value: '' });
     const [subCategorySelected, setSubCategorySelected] = useState({ label: '', value: '' });
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubChange = subCategoryOption => {
         setSubCategorySelected(subCategoryOption);
-        console.log(`Option selected:`, subCategorySelected);
     };
 
     const productSchema = Yup.object().shape({
@@ -43,7 +47,6 @@ export default function CardAddProducts() {
     useEffect(() => {
         const listSubCateogry = async () => {
             let listSubCategory = await mainCategoryService.listSubCategoryAsync();
-            console.log(listSubCategory);
             listSubCategory.data = listSubCategory.data.map((subCategory) => {
                 return {
                     label: subCategory.name,
@@ -51,13 +54,13 @@ export default function CardAddProducts() {
                 }
             });
             setSubCategoryOption(listSubCategory.data);
-            console.log(listSubCategory.data);
         }
         listSubCateogry();
     }, [])
 
     return (
         <>
+            {isLoading && <FullPageLoading />}
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                 <div className="rounded-t bg-white mb-0 px-6 py-6">
                     <div className="text-center flex justify-between">
@@ -81,9 +84,24 @@ export default function CardAddProducts() {
                         onSubmit={async (values) => {
                             // same shape as initial values
                             const params = { category_id: subCategorySelected.value, size: 0, ...values };
-                            console.log(params);
-                            const result = await productService.createProduct(params);
-                            console.log(result);
+                            setIsLoading(true);
+                            const response = await productService.createProduct(params);
+                            if (response.state === REQUEST_STATE.SUCCESS) {
+                                notification['success']({
+                                    message: 'Add product',
+                                    description:
+                                        'Add product successfully',
+                                });
+                            }
+
+                            if (response.state === REQUEST_STATE.ERROR) {
+                                notification['error']({
+                                    message: 'Add product',
+                                    description:
+                                        subCategorySelected.value ? data.response.message : 'You must select category',
+                                });
+                            }
+                            setIsLoading(false);
                         }}
                     >
                         {({ errors, touched }) => (

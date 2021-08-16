@@ -78,7 +78,7 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-3 no-underline">
               Actions
             </h6>
             {/* Navigation */}
@@ -87,7 +87,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-2 font-bold block " +
                     (window.location.href.indexOf("/admin/list-products") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -96,7 +96,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fab fa-product-hunt mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/list-products") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -109,7 +109,7 @@ export default function Sidebar() {
               <li className="items-center">
                 <Link
                   className={
-                    "text-xs uppercase py-3 font-bold block " +
+                    "text-xs uppercase py-2 font-bold block " +
                     (window.location.href.indexOf("/admin/category") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
@@ -118,13 +118,34 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-table mr-2 text-sm " +
+                      "fas fa-list mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/category") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
                   Category
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-2 font-bold block " +
+                    (window.location.href.indexOf("/admin/list-inquiry") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/admin/list-inquiry"
+                >
+                  <i
+                    className={
+                      "fas fa-address-book mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/list-inquiry") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Inquiry
                 </Link>
               </li>
             </ul>

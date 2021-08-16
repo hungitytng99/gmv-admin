@@ -1,8 +1,10 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import 'antd/dist/antd.css';
+import { Modal } from 'antd';
 
 const CategoryDropdown = (props) => {
-  const { subCategoryId, handleDeleteSubCategory } = props;
+  const { subCategoryId,mainCategoryId, handleDeleteSubCategory } = props;
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -17,7 +19,20 @@ const CategoryDropdown = (props) => {
     setDropdownPopoverShow(false);
   };
 
-  
+  // confirm
+  const [confirm, setConfirm] = React.useState(false);
+  const showModal = () => {
+    setConfirm(true);
+  };
+  const handleOk = () => {
+    handleDeleteSubCategory(mainCategoryId,subCategoryId);
+    setConfirm(false);
+  }
+  const handleCancel = () => {
+    setConfirm(false);
+    closeDropdownPopover();
+  }
+
 
   return (
     <>
@@ -49,13 +64,21 @@ const CategoryDropdown = (props) => {
         </a>
         <div
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:cursor-pointer hover:bg-lightBlue-500"
           }
-          onClick={() => handleDeleteSubCategory(subCategoryId)}
+          onClick={() => showModal()}
         >
           Delete
         </div>
       </div>
+      <Modal
+        title="Delete"
+        visible={confirm}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>This action will remove all product of this sub-category. Are you sure?</p>
+      </Modal>
     </>
   );
 };

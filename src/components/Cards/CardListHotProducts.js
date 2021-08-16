@@ -66,7 +66,13 @@ export default function CardListHotProducts(props) {
               </tr>
             </thead>
             <tbody>
-
+              {
+                listProducts.length == 0 && <tr>
+                  <td colSpan="9" className="text-center py-4">
+                    Found no hot product
+                  </td>
+                </tr>
+              }
               {
                 listProducts.map((product) => {
                   return (
@@ -93,6 +99,7 @@ export default function CardListHotProducts(props) {
                             product.image.map((img) => {
                               return (
                                 <img
+                                  key={img}
                                   src={img}
                                   alt="..."
                                   className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"
@@ -109,9 +116,9 @@ export default function CardListHotProducts(props) {
                         {product.main_category_name}
                       </td>
                       <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                        <HotProductDropdown 
-                        productId={product.id}
-                        handleUnSetHotProduct={handleUnSetHotProduct} />
+                        <HotProductDropdown
+                          productId={product.id}
+                          handleUnSetHotProduct={handleUnSetHotProduct} />
                       </td>
                     </tr>
                   )

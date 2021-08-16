@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-
-// components
-
+import { notification } from 'antd';
 import CardEditProduct from "components/Cards/CardEditProduct";
 import { useState } from "react/cjs/react.development";
 import { productService } from "data-services/product";
+import { REQUEST_STATE } from "app-configs";
 
 export default function EditProduct(props) {
   const productId = props.match.params.id;
   const [detailProductState, setDetailProductState] = useState({});
+  const [isReload , setIsReload] = useState(false);
 
   useEffect(() => {
     const getDetailProduct = async () => {
@@ -21,6 +21,21 @@ export default function EditProduct(props) {
   const submitEditMainCategory = async (params) => {
     const response = await productService.updateProduct(productId, params)
     console.log(response);
+    if(response.state === REQUEST_STATE.SUCCESS) {
+      notification['success']({
+          message: 'Update product',
+          description:
+              response.data.message,
+      });
+  }
+
+  if(response.state === REQUEST_STATE.ERROR) {
+      notification['error']({
+          message: 'Update product',
+          description:
+              'An error occur when update product',
+      });
+  }
   }
 
   return (

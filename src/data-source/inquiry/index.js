@@ -34,7 +34,7 @@ export const apiGetCustomerInquiry = async (params) => {
         const response = await GET("/inquiry", params, { isFullPath: false });
         return {
             state: REQUEST_STATE.SUCCESS,
-            data: response
+            data: response.data
         };
 
     } catch (error) {

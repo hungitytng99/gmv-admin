@@ -14,7 +14,7 @@ export const apiSignIn = async (params) => {
         console.log("error", error);
         return {
             state: REQUEST_STATE.ERROR,
-            data: []
+            data: error
         };
     }
 };

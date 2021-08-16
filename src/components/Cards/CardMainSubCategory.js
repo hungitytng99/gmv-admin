@@ -9,22 +9,26 @@ import {
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
 import { useState } from "react/cjs/react.development";
 import { mainCategoryService } from "data-services/category";
+import { Popconfirm } from 'antd';
 
 export default function CardMainSubCategory(props) {
-    const { subMain, handleDeleteMainCategory } = props;
+    const { subMain, handleDeleteMainCategory, handleDeleteSubCategory } = props;
     const [subMainState, setMainState] = useState(subMain);
-    const handleDeleteSubCategory = async (id) => {
-        const response = await mainCategoryService.deleteSubCategory(id);
-        if (response.data.status === 200) {
-            let subMainTemp = { ...subMainState };
-            subMainTemp.sub_category = subMainTemp.sub_category.filter(item => {
-                if (item.id !== id) {
-                    return item;
+    // const handleDeleteSubCategory = async (id) => {
+    //     const response = await mainCategoryService.deleteSubCategory(id);
+    //     if (response.data.status === 200) {
+    //         let subMainTemp = { ...subMainState };
+    //         subMainTemp.sub_category = subMainTemp.sub_category.filter(item => {
+    //             if (item.id !== id) {
+    //                 return item;
 
-                }
-            })
-            setMainState(subMainTemp);
-        }
+    //             }
+    //         })
+    //         setMainState(subMainTemp);
+    //     }
+    // }
+    function confirm() {
+        handleDeleteMainCategory(subMainState.id)
     }
     return (
         <>
@@ -45,13 +49,20 @@ export default function CardMainSubCategory(props) {
                                 <a href={`/admin/edit-main-category/${subMainState.id}`} className="block mr-2 hover:cursor-pointer">
                                     <EditTwoTone />
                                 </a>
-                                <div
-                                    className="mr-2 hover:cursor-pointer"
-                                    onClick={() => handleDeleteMainCategory(subMainState.id)}
+                                <Popconfirm
+                                    title="This action will delete all product and sub-category. Are you sure?"
+                                    onConfirm={confirm}
+                                    okText="Yes"
+                                    cancelText="No"
                                 >
-                                    <DeleteTwoTone />
+                                    <div
+                                        className="mr-2 hover:cursor-pointer"
+                                        // onClick={() => handleDeleteMainCategory(subMainState.id)}
+                                    >
+                                        <DeleteTwoTone />
+                                    </div>
+                                </Popconfirm>,
 
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,6 +116,7 @@ export default function CardMainSubCategory(props) {
                                                 <CategoryDropdown
                                                     handleDeleteSubCategory={handleDeleteSubCategory}
                                                     subCategoryId={item.id}
+                                                    mainCategoryId={subMain.id}
                                                 />
                                             </td>
                                         </tr>

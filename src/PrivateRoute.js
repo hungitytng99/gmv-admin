@@ -15,7 +15,7 @@ export default function PrivateRoute(props) {
                 const res = await inquiryService.getCustomerInquiry();
                 if (res.state === REQUEST_STATE.SUCCESS) {
                     setIsAuth(1);
-                } else if(res.state === REQUEST_STATE.ERROR) {
+                } else if (res.state === REQUEST_STATE.ERROR) {
                     Cookies.remove('token');
                     setIsAuth(2)
                 }
@@ -24,7 +24,7 @@ export default function PrivateRoute(props) {
             }
         }
         validateToken();
-    },[isAuth]);
+    }, [isAuth]);
     switch (isAuth) {
         case 0:
             return <FullPageLoading hidden={true} />

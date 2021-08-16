@@ -4,9 +4,13 @@ import React, { useEffect } from "react";
 import { mainCategoryService } from "data-services/category";
 import { useState } from "react/cjs/react.development";
 import CardMainSubCategory from "components/Cards/CardMainSubCategory";
+import { notification } from 'antd';
+import { REQUEST_STATE } from "app-configs";
+import FullPageLoading from "components/Loading/FullPageLoading";
 
 export default function ListCategory() {
     const [mainSubCategory, setMainSubCategory] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const getMainSubCategory = async () => {
             const mainSubCategory = await mainCategoryService.listCategoryWithSubCategory();
@@ -16,18 +20,72 @@ export default function ListCategory() {
     }, [])
 
     const handleDeleteMainCategory = async (id) => {
+        setIsLoading(true);
         const response = await mainCategoryService.deleteMainCategory(id);
-        if (response.data.status === 200) {
+        if (response.state === REQUEST_STATE.SUCCESS) {
             const mainSubCategoryTmp = mainSubCategory.filter((item) => {
-                if(Number(item.id) !== Number(id)) {
+                if (Number(item.id) !== Number(id)) {
                     return item;
                 }
             })
+            console.log(mainSubCategoryTmp);
+            notification['success']({
+                message: 'Remove main category',
+                description:
+                    "Remove main category successfully",
+            });
             setMainSubCategory(mainSubCategoryTmp);
         }
+
+        if (response.state === REQUEST_STATE.ERROR) {
+            notification['error']({
+                message: 'Remove main category',
+                description:
+                    'An error occur when remove main category',
+            });
+        }
+        setIsLoading(false);
+
     }
+    const handleDeleteSubCategory = async (mainId, subId) => {
+        setIsLoading(true);
+        const response = await mainCategoryService.deleteSubCategory(subId);
+        if (response.state === REQUEST_STATE.SUCCESS) {
+            let subMainTemp = [...mainSubCategory];
+            console.log(subMainTemp, mainId, subId);
+            subMainTemp = subMainTemp.map((subMainItem) => {
+                if (subMainItem.id === mainId) {
+                    subMainItem.sub_category = subMainItem.sub_category.filter((sub) => {
+                        if (sub.id !== subId) {
+                            return sub;
+                        }
+                    })
+                }
+                return subMainItem;
+            })
+            notification['success']({
+                message: 'Remove sub-category',
+                description:
+                    'Remove sub-category successfully',
+            });
+
+            setMainSubCategory(subMainTemp);
+        }
+
+        if (response.state === REQUEST_STATE.ERROR) {
+            notification['error']({
+                message: 'Remove sub-category',
+                description:
+                    'An error occur when remove sub category',
+            });
+        }
+
+        setIsLoading(false);
+    }
+
     return (
         <>
+            {isLoading && <FullPageLoading />}
             <div className="flex flex-wrap">
                 <div className="relative w-full rounded-t px-4 mb-2 border-0 ">
                     <div className="px-8 py-3 rounded-t flex flex-wrap justify-between items-center bg-white">
@@ -55,8 +113,9 @@ export default function ListCategory() {
                             return (
                                 <CardMainSubCategory
                                     handleDeleteMainCategory={handleDeleteMainCategory}
+                                    handleDeleteSubCategory={handleDeleteSubCategory}
                                     key={subMain.id}
-                                    subMain={subMain} 
+                                    subMain={subMain}
                                 />
                             )
                         })}

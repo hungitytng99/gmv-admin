@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createPopper } from "@popperjs/core";
+import 'antd/dist/antd.css';
+import { Modal } from 'antd';
 
 const ProductDropdown = (props) => {
   const { productId, handleDeleteProduct, handleSetHotProduct } = props;
@@ -8,6 +10,20 @@ const ProductDropdown = (props) => {
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
+  // for confirm
+  const [confirm, setConfirm] = React.useState(false);
+  const showModal = () => {
+    setConfirm(true);
+  };
+  const handleOk = () => {
+    handleDeleteProduct(productId);
+    setConfirm(false);
+  }
+  const handleCancel = () => {
+    setConfirm(false);
+    setDropdownPopoverShow(false);
+  }
+
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: "left-start",
@@ -18,6 +34,11 @@ const ProductDropdown = (props) => {
     setDropdownPopoverShow(false);
   };
 
+  useEffect(() => {
+    return () => {
+
+    }
+  })
 
   return (
     <>
@@ -52,7 +73,7 @@ const ProductDropdown = (props) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:cursor-pointer"
           }
-          onClick={() => handleDeleteProduct(productId)}
+          onClick={showModal}
         >
           Delete
         </div>
@@ -61,11 +82,19 @@ const ProductDropdown = (props) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:cursor-pointer"
           }
-          onClick={() => handleSetHotProduct(productId)}
+          onClick={() => { closeDropdownPopover(); handleSetHotProduct(productId); }}
         >
           Set as hot product
         </div>
       </div>
+      <Modal
+        title="Delete"
+        visible={confirm}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>'Are you sure to delete this product?'</p>
+      </Modal>
     </>
   );
 };

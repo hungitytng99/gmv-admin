@@ -82,11 +82,11 @@ export default function CardAddSubCategory(props) {
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                             >
-                                                Sub category <span className="text-rose-600">*</span>
+                                                Main category <span className="text-rose-600">*</span>
                                             </label>
                                             <Select
                                                 styles={subCategoryStyle}
-                                                placeholder="Sub category"
+                                                placeholder="Main category"
                                                 onChange={handleMainChange}
                                                 options={mainCategoryOption}
                                             />
