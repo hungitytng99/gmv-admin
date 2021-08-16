@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Select from 'react-select';
-import { Formik, Form, Field, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { mainCategoryService } from "data-services/category";
-import { productService } from "data-services/product";
 // components
 
 export default function CardEditMainCategory(props) {
@@ -34,7 +31,7 @@ export default function CardEditMainCategory(props) {
     });
 
     useEffect(() => {
-        if (detailMainCategory?.state == "SUCCESS") {
+        if (detailMainCategory?.state === "SUCCESS") {
             formik.values.name = detailMainCategory.data.name;
             formik.values.description = detailMainCategory.data.description;
             formik.values.url_image = detailMainCategory.data.image;

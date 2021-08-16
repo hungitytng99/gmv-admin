@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 // components
 import ProductDropdown from "components/Dropdowns/ProductDropdown";
 
 export default function CardListProducts(props) {
-  const { listProducts = [], handleDeleteProduct, handleEditProduct, handleSetHotProduct  } = props;
+  const { listProducts = [], handleDeleteProduct, handleSetHotProduct  } = props;
   return (
     <>
       <div

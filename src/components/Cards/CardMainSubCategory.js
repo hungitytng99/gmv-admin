@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 // components
 import {
@@ -16,10 +15,10 @@ export default function CardMainSubCategory(props) {
     const [subMainState, setMainState] = useState(subMain);
     const handleDeleteSubCategory = async (id) => {
         const response = await mainCategoryService.deleteSubCategory(id);
-        if (response.data.status == 200) {
+        if (response.data.status === 200) {
             let subMainTemp = { ...subMainState };
             subMainTemp.sub_category = subMainTemp.sub_category.filter(item => {
-                if (item.id != id) {
+                if (item.id !== id) {
                     return item;
 
                 }
@@ -60,7 +59,7 @@ export default function CardMainSubCategory(props) {
                         {/* Projects table */}
                         <table className="items-center w-full bg-transparent border-collapse">
                             <thead>
-                                {subMainState.sub_category.length != 0 &&
+                                {subMainState.sub_category.length !== 0 &&
                                     <tr>
                                         <th
                                             className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"
@@ -82,7 +81,7 @@ export default function CardMainSubCategory(props) {
 
                             </thead>
                             <tbody>
-                                {subMainState.sub_category.length == 0 &&
+                                {subMainState.sub_category.length === 0 &&
                                     <tr>
                                         <td
                                             className="px-6 text-center align-middle py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold bg-blueGray-50 text-blueGray-500 border-blueGray-100"

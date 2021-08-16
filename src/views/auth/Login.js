@@ -1,7 +1,6 @@
 import { userService } from "data-services/user";
 import { useFormik } from "formik";
 import React from "react";
-import { useState } from "react/cjs/react.development";
 import * as Yup from 'yup';
 import { notification } from 'antd';
 import { REQUEST_STATE } from "app-configs";
@@ -9,8 +8,6 @@ import 'antd/dist/antd.css';
 import Cookies from 'js-cookie'
 
 export default function Login() {
-  const [loginFail, setLoginFail] = useState(false);
-
   const signInSchema = Yup.object().shape({
     username: Yup.string()
       .required('This field is required'),
@@ -39,6 +36,9 @@ export default function Login() {
       } else if (response.state === REQUEST_STATE.SUCCESS) {
         Cookies.set('token', response.data['access-token']);
         openNotificationWithIcon('success', "Login successfully!", "Wait a second...");
+        setTimeout(() => {
+          window.location.href = "/admin/list-products"
+        },500)
       }
     },
     validationSchema: signInSchema,

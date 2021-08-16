@@ -1,6 +1,5 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
-import { mainCategoryService } from "data-services/category";
 
 const CategoryDropdown = (props) => {
   const { subCategoryId, handleDeleteSubCategory } = props;

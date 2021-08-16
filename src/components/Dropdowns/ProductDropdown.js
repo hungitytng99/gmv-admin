@@ -2,7 +2,7 @@ import React from "react";
 import { createPopper } from "@popperjs/core";
 
 const ProductDropdown = (props) => {
-  const { productId, handleDeleteProduct, handleEditProduct, handleSetHotProduct } = props;
+  const { productId, handleDeleteProduct, handleSetHotProduct } = props;
 
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);

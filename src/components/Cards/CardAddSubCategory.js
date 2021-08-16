@@ -3,13 +3,12 @@ import Select from 'react-select';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { mainCategoryService } from "data-services/category";
-import { productService } from "data-services/product";
 // components
 
 export default function CardAddSubCategory(props) {
     const [mainCategoryOption, setMainCategoryOption] = useState([{ label: '', value: '' }]);
     const [mainCategorySelected, setMainCategorySelected] = useState({ label: '', value: '' })
-    const { addMainCategory, addSubCategory } = props;
+    const { addSubCategory } = props;
 
     const handleMainChange = mainCategoryOption => {
         // setMainCategoryOption(mainCategoryOption);

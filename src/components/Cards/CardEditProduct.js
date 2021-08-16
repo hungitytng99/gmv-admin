@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { productService } from "data-services/product";
 import { mainCategoryService } from "data-services/category";
 // components
 
@@ -70,7 +69,7 @@ export default function CardEditProduct(props) {
         }
         listSubCateogry();
 
-        if (detailProduct?.state == "SUCCESS") {
+        if (detailProduct?.state === "SUCCESS") {
             formik.values.title = detailProduct.data.title;
             formik.values.description = detailProduct.data.description;
             formik.values.model_number = detailProduct.data.model;

@@ -1,6 +1,7 @@
 import { Configs } from "app-configs";
 import { ACTION_TYPE } from "app-configs";
 import axios from "axios";
+import jsCookie from "js-cookie";
 
 let token = "";
 
@@ -8,21 +9,16 @@ export const getOptions = (options) => {
     const opts = {
         headers: {
             'Content-Type': 'application/json',
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTYyODk2NzQyNSwiZXhwIjoxNjI5MDUzODI1fQ.LZl4lEHupnwE7auHH_MHdz-H4jF4iW1okir325ToCvc',
         },
         ...options
     };
     
-    // if (!token) {
-    //     const source = sessionStorage.getItem("token");
-
-    //     if (source) {
-    //         token = JSON.parse(source).value;
-    //     }
-    // }
+    if (!token) {
+        token = jsCookie.get("token");
+    }
 
     if (token) {
-        opts.headers.Authorization = "Bearer " + token;
+        opts.headers['x-access-token'] = token;
     }
 
     return opts;
@@ -42,10 +38,10 @@ export const GET = (path, params, options = {}) => {
         let adjustParam = "";
         if (Array.isArray(valueParam)) {
             // TODO with "all" value;
-            adjustParam = valueParam.map(paramDetail => `${key}=${encodeURIComponent(paramDetail != "all" ? paramDetail : "")}`).join("&")
+            adjustParam = valueParam.map(paramDetail => `${key}=${encodeURIComponent(paramDetail !== "all" ? paramDetail : "")}`).join("&")
         } else {
             // TODO with "all" value;
-            valueParam = valueParam != "all" ? valueParam : "";
+            valueParam = valueParam !== "all" ? valueParam : "";
             adjustParam = `${key}=${encodeURIComponent(valueParam)}`;
         }
         return adjustParam;

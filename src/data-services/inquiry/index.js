@@ -1,7 +1,8 @@
 
 // Data Flow: Step 2
 
-import { apiSendCustomerInquiry } from "src/data-source/inquiry";
+import { apiGetCustomerInquiry } from "data-source/inquiry";
+import { apiSendCustomerInquiry } from "data-source/inquiry";
 
 // transform data to fit with UI;
 export const inquiryService = {
@@ -10,5 +11,11 @@ export const inquiryService = {
             return response;
         });
     },
+
+    getCustomerInquiry: function(params) {
+        return apiGetCustomerInquiry(params).then(response => {
+            return response;
+        })
+    }
    
 }

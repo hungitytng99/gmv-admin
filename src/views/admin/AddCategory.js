@@ -1,7 +1,5 @@
 import React from "react";
-
 // components
-
 import { mainCategoryService } from "data-services/category";
 import CardAddSubCategory from "components/Cards/CardAddSubCategory";
 import CardAddMainCategory from "components/Cards/CardAddMainCategory";

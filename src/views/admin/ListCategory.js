@@ -17,7 +17,7 @@ export default function ListCategory() {
 
     const handleDeleteMainCategory = async (id) => {
         const response = await mainCategoryService.deleteMainCategory(id);
-        if (response.data.status == 200) {
+        if (response.data.status === 200) {
             const mainSubCategoryTmp = mainSubCategory.filter((item) => {
                 if(Number(item.id) !== Number(id)) {
                     return item;

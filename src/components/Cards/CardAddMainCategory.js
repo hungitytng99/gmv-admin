@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // components
 
 export default function CardAddMainCategory(props) {
-    const { addMainCategory, addSubCategory } = props;
+    const { addMainCategory } = props;
 
     const mainCategorySchema = Yup.object().shape({
         name: Yup.string()
