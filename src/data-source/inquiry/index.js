@@ -45,3 +45,20 @@ export const apiGetCustomerInquiry = async (params) => {
         };
     }
 };
+
+export const apiDeleteCustomerInquiry = async (id) => {
+    try {
+        const response = await GET("/inquiry/", id, { isFullPath: false });
+        return {
+            state: REQUEST_STATE.SUCCESS,
+            data: response.data
+        };
+
+    } catch (error) {
+        console.log("error", error);
+        return {
+            state: REQUEST_STATE.ERROR,
+            data: []
+        };
+    }
+};

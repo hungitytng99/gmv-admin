@@ -1,10 +1,11 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import 'antd/dist/antd.css';
+import { Menu, Dropdown } from 'antd';
 import { Modal } from 'antd';
 
 const CategoryDropdown = (props) => {
-  const { subCategoryId,mainCategoryId, handleDeleteSubCategory } = props;
+  const { subCategoryId, mainCategoryId, handleDeleteSubCategory } = props;
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -25,7 +26,7 @@ const CategoryDropdown = (props) => {
     setConfirm(true);
   };
   const handleOk = () => {
-    handleDeleteSubCategory(mainCategoryId,subCategoryId);
+    handleDeleteSubCategory(mainCategoryId, subCategoryId);
     setConfirm(false);
   }
   const handleCancel = () => {
@@ -33,44 +34,39 @@ const CategoryDropdown = (props) => {
     closeDropdownPopover();
   }
 
-
-  return (
-    <>
-      <a
-        className="text-blueGray-500 py-1 px-3"
-        href="/"
-        ref={btnDropdownRef}
-        onClick={(e) => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
-        }}
-      >
-        <i className="fas fa-ellipsis-v"></i>
-      </a>
-      <div
-        ref={popoverDropdownRef}
-        className={
-          (dropdownPopoverShow ? "block " : "hidden ") +
-          "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-        }
-      >
+  const menu = (
+    <Menu>
+      <Menu.Item>
         <a
           href={`/admin/edit-sub-category/${subCategoryId}`}
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-1 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           }
         >
           Edit
         </a>
+      </Menu.Item>
+      <Menu.Item>
         <div
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:cursor-pointer hover:text-lightBlue-500"
+            "text-sm py-1 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:cursor-pointer hover:text-lightBlue-500"
           }
           onClick={() => showModal()}
         >
           Delete
         </div>
-      </div>
+      </Menu.Item>
+    </Menu>
+  );
+
+
+  return (
+    <>
+      <Dropdown overlay={menu} placement="bottomRight">
+        <div className="w-4 hover:cursor-pointer hover:text-lightBlue-500">
+          <i className="fas fa-ellipsis-v"></i>
+        </div>
+      </Dropdown>
       <Modal
         title="Delete"
         visible={confirm}
