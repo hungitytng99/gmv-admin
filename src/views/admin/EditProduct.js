@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { notification } from 'antd';
 import CardEditProduct from "components/Cards/CardEditProduct";
-import { useState } from "react/cjs/react.development";
 import { productService } from "data-services/product";
 import { REQUEST_STATE } from "app-configs";
 

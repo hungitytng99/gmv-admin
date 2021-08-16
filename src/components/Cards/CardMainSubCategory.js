@@ -5,7 +5,6 @@ import {
     DeleteTwoTone
 } from '@ant-design/icons';
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
-import { useState } from "react/cjs/react.development";
 import { Popconfirm } from 'antd';
 
 export default function CardMainSubCategory(props) {

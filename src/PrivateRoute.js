@@ -2,11 +2,11 @@ import { REQUEST_STATE } from "app-configs";
 import FullPageLoading from "components/Loading/FullPageLoading";
 import { inquiryService } from "data-services/inquiry";
 import Cookies from "js-cookie";
-import React from "react";
+import React, { useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export default function PrivateRoute(props) {
-    const [isAuth, setIsAuth] = React.useState(0);
+    const [isAuth, setIsAuth] = useState(0);
     const { component: Component, ...rest } = props;
     React.useEffect(() => {
         async function validateToken() {
