@@ -103,7 +103,7 @@ export default function ListProducts(props) {
                     >
                         <div className="rounded-t mb-0 px-4 py-3 border-0">
                             <div className="flex flex-wrap justify-between items-center">
-                                <div className="relative mt-2 lg:mt-0 flex w-full px-4 max-w-full flex-grow flex-1">
+                                <div className="relative mt-2 lg:mt-0 flex w-full max-w-full flex-grow flex-1">
                                     <h3
                                         className="mb-0 whitespace-nowrap font-semibold text-lg text-blueGray-700"
                                     >

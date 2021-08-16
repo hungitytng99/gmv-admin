@@ -87,7 +87,7 @@ export default function ListCategory() {
             <div className="flex flex-wrap">
                 <div className="relative w-full rounded-t px-4 mb-2 border-0 ">
                     <div className="px-8 py-3 rounded-t flex flex-wrap justify-between items-center bg-white">
-                        <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <div className="relative w-full max-w-full flex-grow flex-1">
                             <h3 className="mb-0 font-semibold text-lg text-blueGray-700">
                                 List category
                             </h3>
