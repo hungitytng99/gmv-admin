@@ -8,11 +8,15 @@ import { mainCategoryService } from "data-services/category";
 import FullPageLoading from "components/Loading/FullPageLoading";
 import { REQUEST_STATE } from "app-configs";
 import { notification } from 'antd';
+import { Input, Space } from 'antd';
 import 'antd/dist/antd.css';
+const { Search } = Input;
+
 
 export default function ListProducts(props) {
     const [listProducts, setListProducts] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         const getListProduct = async () => {
             const listResult = await productService.listProductAsync();
@@ -75,6 +79,21 @@ export default function ListProducts(props) {
         }
         setIsLoading(false);
     }
+    const onSearch = async (value) => {
+        setIsLoading(true);
+        const listResult = await productService.listProductAsync({search: value});
+        for (let i = 0; i < listResult.data.length; i++) {
+            const subCategory = await mainCategoryService.detailSubCategoryAsync(listResult.data[i].category_id);
+            listResult.data[i].category_name = subCategory.data.name;
+            listResult.data[i].main_category_name = subCategory.data.main_category_name;
+
+        }
+        console.log(listResult);
+        setListProducts(listResult);
+        setIsLoading(false);
+
+    };
+
     return (
         <>
             {isLoading && <FullPageLoading />}
@@ -85,26 +104,30 @@ export default function ListProducts(props) {
                     >
                         <div className="rounded-t mb-0 px-4 py-3 border-0">
                             <div className="flex flex-wrap justify-between items-center">
-                                <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                                <div className="relative mt-2 lg:mt-0 flex w-full px-4 max-w-full flex-grow flex-1">
                                     <h3
-                                        className="font-semibold text-lg text-blueGray-700"
+                                        className="mb-0 whitespace-nowrap font-semibold text-lg text-blueGray-700"
                                     >
                                         List products
                                     </h3>
+                                    <div className="min-w-48 ml-2">
+                                        <Search placeholder="Search product" onSearch={onSearch} enterButton="Search" />
+                                    </div>
                                 </div>
-                                <a
-                                    href='/admin/list-hot-products'
-                                    className="bg-red-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 hover:text-white"
-                                >
-                                    Hot product
-                                </a>
-                                <a
-                                    href='/admin/add-products'
-                                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 hover:text-white"
-                                >
-                                    Add product
-                                </a>
-
+                                <div className="mt-2 lg:mt-0">
+                                    <a
+                                        href='/admin/list-hot-products'
+                                        className="bg-red-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 hover:text-white"
+                                    >
+                                        Hot product
+                                    </a>
+                                    <a
+                                        href='/admin/add-products'
+                                        className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 hover:text-white"
+                                    >
+                                        Add product
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

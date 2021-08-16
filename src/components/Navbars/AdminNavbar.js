@@ -1,6 +1,5 @@
 import React from "react";
 
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import jsCookie from "js-cookie";
 
 export default function Navbar() {
@@ -15,9 +14,8 @@ export default function Navbar() {
         <div className="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
           {/* Brand */}
           <a
-            className="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-            href="#pablo"
-            onClick={(e) => e.preventDefault()}
+            className="text-white text-sm uppercase hidden md:block lg:inline-block font-semibold hover:text-white"
+            href="/"
           >
             ADMIN BOARD
           </a>

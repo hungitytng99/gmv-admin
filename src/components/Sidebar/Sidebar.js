@@ -1,12 +1,13 @@
 /*eslint-disable*/
+import jsCookie from "js-cookie";
 import React from "react";
 import { Link } from "react-router-dom";
-
-import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-import UserDropdown from "components/Dropdowns/UserDropdown.js";
-
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const handleLogout = () => {
+    jsCookie.remove('token');
+    window.location.href = '/auth/login';
+  }
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -27,14 +28,9 @@ export default function Sidebar() {
             Giang minh việt
           </Link>
           {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
-            <li className="inline-block relative">
-              <NotificationDropdown />
-            </li>
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
-          </ul>
+          <div className="block md:hidden">
+            <button onClick={() => handleLogout()} className="bg-gray-500 text-white px-4 py-1 rounded-md focus:outline-none"> Logout</button>
+          </div>
           {/* Collapse */}
           <div
             className={
@@ -64,19 +60,6 @@ export default function Sidebar() {
                 </div>
               </div>
             </div>
-            {/* Form */}
-            <form className="mt-6 mb-4 md:hidden">
-              <div className="mb-3 pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
-                />
-              </div>
-            </form>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-3 no-underline">
               Actions

@@ -61,7 +61,7 @@ export default function ListHotProduct() {
                             <div className="flex flex-wrap justify-between items-center">
                                 <div className="relative w-full px-4 max-w-full flex-grow flex-1">
                                     <h3
-                                        className="font-semibold text-lg text-blueGray-700"
+                                        className="mb-0 font-semibold text-lg text-blueGray-700"
                                     >
                                         List hot products
                                     </h3>
