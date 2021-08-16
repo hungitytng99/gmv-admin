@@ -13,7 +13,6 @@ export default function CardAddSubCategory(props) {
     const handleMainChange = mainCategoryOption => {
         // setMainCategoryOption(mainCategoryOption);
         setMainCategorySelected(mainCategoryOption)
-        console.log(`Option selected:`, mainCategoryOption);
     };
 
     const subCategorySchema = Yup.object().shape({
@@ -27,7 +26,6 @@ export default function CardAddSubCategory(props) {
     useEffect(() => {
         const listMainCateogry = async () => {
             let listMainCategory = await mainCategoryService.listMainCategoryAsync();
-            console.log(listMainCategory);
             listMainCategory.data = listMainCategory.data.map((subCategory) => {
                 return {
                     label: subCategory.name,

@@ -28,7 +28,6 @@ export default function ListCategory() {
                     return item;
                 }
             })
-            console.log(mainSubCategoryTmp);
             notification['success']({
                 message: 'Remove main category',
                 description:
@@ -52,7 +51,6 @@ export default function ListCategory() {
         const response = await mainCategoryService.deleteSubCategory(subId);
         if (response.state === REQUEST_STATE.SUCCESS) {
             let subMainTemp = [...mainSubCategory];
-            console.log(subMainTemp, mainId, subId);
             subMainTemp = subMainTemp.map((subMainItem) => {
                 if (subMainItem.id === mainId) {
                     subMainItem.sub_category = subMainItem.sub_category.filter((sub) => {
@@ -90,9 +88,7 @@ export default function ListCategory() {
                 <div className="relative w-full rounded-t px-4 mb-2 border-0 ">
                     <div className="px-8 py-3 rounded-t flex flex-wrap justify-between items-center bg-white">
                         <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <h3
-                                className="font-semibold text-lg text-blueGray-700"
-                            >
+                            <h3 className="mb-0 font-semibold text-lg text-blueGray-700">
                                 List category
                             </h3>
                         </div>

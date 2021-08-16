@@ -34,7 +34,6 @@ export default function CardEditSubCategory(props) {
     const subCategoryStyle = {
         control: styles => ({ ...styles, height: '45px' })
     }
-    console.log("RUN");
     useEffect(() => {
         const listMainCateogry = async () => {
             let listMainCategory = await mainCategoryService.listMainCategoryAsync();
@@ -47,7 +46,6 @@ export default function CardEditSubCategory(props) {
             setMainCategoryOption(listMainCategory.data);
         }
         listMainCateogry();
-        console.log(detailSubCategory);
         if (detailSubCategory?.data?.name) {
             formik.values.name = detailSubCategory.data.name;
             setMainCategorySelected({ label: detailSubCategory.data.main_category_name, value: detailSubCategory.data.main_category_id })

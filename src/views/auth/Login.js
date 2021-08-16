@@ -30,7 +30,6 @@ export default function Login() {
     },
     onSubmit: async (values) => {
       const response = await userService.signIn(values);
-      console.log(response);
       if (response.state === REQUEST_STATE.ERROR) {
         openNotificationWithIcon('error');
       } else if (response.state === REQUEST_STATE.SUCCESS) {

@@ -12,9 +12,7 @@ export default function CardEditProduct(props) {
 
     const handleSubChange = subCategoryOption => {
         setSubCategorySelected(subCategoryOption);
-        console.log(`Option selected:`, subCategorySelected);
     };
-    console.log(detailProduct);
 
     const productSchema = Yup.object().shape({
         title: Yup.string()

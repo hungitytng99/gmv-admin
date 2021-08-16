@@ -24,7 +24,6 @@ export default function CardEditMainCategory(props) {
             url_image: ''
         },
         onSubmit: (values) => {
-            console.log(values);
             submitEditMainCategory(values);
         },
         validationSchema: validationSchema,

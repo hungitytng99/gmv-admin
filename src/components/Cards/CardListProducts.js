@@ -3,7 +3,7 @@ import React from "react";
 import ProductDropdown from "components/Dropdowns/ProductDropdown";
 
 export default function CardListProducts(props) {
-  const { listProducts = [], handleDeleteProduct, handleSetHotProduct  } = props;
+  const { listProducts = [], handleDeleteProduct, handleSetHotProduct } = props;
   return (
     <>
       <div
@@ -64,6 +64,13 @@ export default function CardListProducts(props) {
               </tr>
             </thead>
             <tbody>
+              {
+                listProducts.length === 0 && <tr>
+                  <td colSpan="9" className="text-center py-4">
+                    Found no product
+                  </td>
+                </tr>
+              }
 
               {
                 listProducts.map((product) => {

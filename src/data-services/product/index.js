@@ -43,7 +43,6 @@ export const productService = {
 
     detailProductByIdAsync: function (productId) {
         return apiDetailProductById(productId).then(async (response) => {
-            console.log(response);
             const mainCategory = await mainCategoryService.detailMainCategoryAsync(response.data.main_category_id);
             const subCategory = await mainCategoryService.detailSubCategoryAsync(response.data.category_id);
             const listImages = [response.data?.main_image_url, ...response.data?.list_product_images];
@@ -84,7 +83,6 @@ export const productService = {
 
     listHotProductAsync: function (requestParams) {
         return apiListHotProduct(requestParams).then(response => {
-            console.log(response);
             response.data = response.data.map(item => {
                 return {
                     id: item?.id,

@@ -1,4 +1,4 @@
-import { GET, PUT, POST, DELETE } from "data-source/fetch.js";
+import { GET, POST } from "data-source/fetch.js";
 import { REQUEST_STATE } from "app-configs/index.js";
 // Data Flow: Step 1
 

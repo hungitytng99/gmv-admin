@@ -6,19 +6,6 @@ import { Modal } from 'antd';
 
 const CategoryDropdown = (props) => {
   const { subCategoryId, mainCategoryId, handleDeleteSubCategory } = props;
-  // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
-  const openDropdownPopover = () => {
-    createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "left-start",
-    });
-    setDropdownPopoverShow(true);
-  };
-  const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
-  };
 
   // confirm
   const [confirm, setConfirm] = React.useState(false);
@@ -31,7 +18,6 @@ const CategoryDropdown = (props) => {
   }
   const handleCancel = () => {
     setConfirm(false);
-    closeDropdownPopover();
   }
 
   const menu = (

@@ -8,7 +8,7 @@ import { mainCategoryService } from "data-services/category";
 import FullPageLoading from "components/Loading/FullPageLoading";
 import { REQUEST_STATE } from "app-configs";
 import { notification } from 'antd';
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import 'antd/dist/antd.css';
 const { Search } = Input;
 
@@ -88,7 +88,6 @@ export default function ListProducts(props) {
             listResult.data[i].main_category_name = subCategory.data.main_category_name;
 
         }
-        console.log(listResult);
         setListProducts(listResult);
         setIsLoading(false);
 

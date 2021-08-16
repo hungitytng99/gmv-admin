@@ -27,8 +27,6 @@ export default function CardAddMainCategory(props) {
                         }}
                         validationSchema={mainCategorySchema}
                         onSubmit={async (values) => {
-                            // same shape as initial values
-                            console.log(values);
                             addMainCategory(values);
                         }}
                     >

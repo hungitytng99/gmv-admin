@@ -1,11 +1,8 @@
 import React from "react";
 // components
-
 import HotProductDropdown from "components/Dropdowns/HotProductDropdown";
-
 export default function CardListHotProducts(props) {
   const { listProducts = [], handleUnSetHotProduct } = props;
-  console.log(listProducts);
   return (
     <>
       <div
@@ -67,7 +64,7 @@ export default function CardListHotProducts(props) {
             </thead>
             <tbody>
               {
-                listProducts.length == 0 && <tr>
+                listProducts.length === 0 && <tr>
                   <td colSpan="9" className="text-center py-4">
                     Found no hot product
                   </td>

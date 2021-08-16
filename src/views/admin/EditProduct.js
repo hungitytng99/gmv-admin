@@ -8,7 +8,6 @@ import { REQUEST_STATE } from "app-configs";
 export default function EditProduct(props) {
   const productId = props.match.params.id;
   const [detailProductState, setDetailProductState] = useState({});
-  const [isReload , setIsReload] = useState(false);
 
   useEffect(() => {
     const getDetailProduct = async () => {
@@ -20,7 +19,6 @@ export default function EditProduct(props) {
 
   const submitEditMainCategory = async (params) => {
     const response = await productService.updateProduct(productId, params)
-    console.log(response);
     if(response.state === REQUEST_STATE.SUCCESS) {
       notification['success']({
           message: 'Update product',
