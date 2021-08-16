@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 // components
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import HotProductDropdown from "components/Dropdowns/HotProductDropdown";
 
 export default function CardListHotProducts(props) {

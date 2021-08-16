@@ -7,7 +7,6 @@ import {
     DeleteTwoTone
 } from '@ant-design/icons';
 
-import TableDropdown from "components/Dropdowns/TableDropdown.js";
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
 import { useState } from "react/cjs/react.development";
 import { mainCategoryService } from "data-services/category";

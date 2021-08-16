@@ -1,18 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
-// components
-
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import HeaderStats from "components/Headers/HeaderStats.js";
 import FooterAdmin from "components/Footers/FooterAdmin.js";
-
-// views
-
-import Dashboard from "views/admin/Dashboard.js";
-import Maps from "views/admin/Maps.js";
-import Settings from "views/admin/Settings.js";
 import ListProducts from "views/admin/ListProducts.js";
 import AddProducts from "views/admin/AddProducts.js";
 import ListCategory from "views/admin/ListCategory.js";
@@ -42,7 +33,7 @@ export default function Admin() {
             <Route path="/admin/edit-sub-category/:id" exact component={EditSubCategory} />
             <Route path="/admin/edit-main-category/:id" exact component={EditMainCategory} />
 
-            <Redirect from="/admin" to="/admin/dashboard" />
+            <Redirect from="/admin" to="/admin/list-products" />
           </Switch>
           <FooterAdmin />
         </div>
