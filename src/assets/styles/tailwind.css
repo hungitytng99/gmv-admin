@@ -536,15 +536,8 @@ video {
   -webkit-appearance: none;
           appearance: none;
   background-color: #fff;
-  border-color: #71717a;
   border-width: 1px;
   border-radius: 0px;
-  padding-top: 0.5rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 [type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='month']:focus, [type='search']:focus, [type='time']:focus, [type='week']:focus, textarea:focus, select:focus {
@@ -561,17 +554,14 @@ video {
 }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-  color: #71717a;
   opacity: 1;
 }
 
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-  color: #71717a;
   opacity: 1;
 }
 
 input::placeholder, textarea::placeholder {
-  color: #71717a;
   opacity: 1;
 }
 
@@ -603,7 +593,6 @@ select {
   width: 1rem;
   color: #2563eb;
   background-color: #fff;
-  border-color: #71717a;
   border-width: 1px;
 }
 
@@ -1133,11 +1122,6 @@ select {
   background-color: rgba(30, 41, 59, var(--tw-bg-opacity));
 }
 
-.hover\:bg-lightBlue-500:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(14, 165, 233, var(--tw-bg-opacity));
-}
-
 .active\:bg-lightBlue-600:active {
   --tw-bg-opacity: 1;
   background-color: rgba(2, 132, 199, var(--tw-bg-opacity));
@@ -1309,10 +1293,6 @@ select {
   flex-grow: 1;
 }
 
-.float-left {
-  float: left;
-}
-
 .font-normal {
   font-weight: 400;
 }
@@ -1361,11 +1341,6 @@ select {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 .text-lg {
@@ -1556,6 +1531,11 @@ select {
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .py-3 {
@@ -1916,6 +1896,10 @@ select {
 
 .break-words {
   overflow-wrap: break-word;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .w-5 {

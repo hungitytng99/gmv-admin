@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // components
 import { mainCategoryService } from "data-services/category";
-import { useState } from "react/cjs/react.development";
 import CardMainSubCategory from "components/Cards/CardMainSubCategory";
 import { notification } from 'antd';
 import { REQUEST_STATE } from "app-configs";

@@ -1,34 +1,17 @@
 import React from "react";
-
 // components
 import {
     EditTwoTone,
     DeleteTwoTone
 } from '@ant-design/icons';
-
 import CategoryDropdown from "components/Dropdowns/CategoryDropdown";
 import { useState } from "react/cjs/react.development";
-import { mainCategoryService } from "data-services/category";
 import { Popconfirm } from 'antd';
 
 export default function CardMainSubCategory(props) {
     const { subMain, handleDeleteMainCategory, handleDeleteSubCategory } = props;
-    const [subMainState, setMainState] = useState(subMain);
-    // const handleDeleteSubCategory = async (id) => {
-    //     const response = await mainCategoryService.deleteSubCategory(id);
-    //     if (response.data.status === 200) {
-    //         let subMainTemp = { ...subMainState };
-    //         subMainTemp.sub_category = subMainTemp.sub_category.filter(item => {
-    //             if (item.id !== id) {
-    //                 return item;
-
-    //             }
-    //         })
-    //         setMainState(subMainTemp);
-    //     }
-    // }
     function confirm() {
-        handleDeleteMainCategory(subMainState.id)
+        handleDeleteMainCategory(subMain.id)
     }
     return (
         <>
@@ -42,11 +25,11 @@ export default function CardMainSubCategory(props) {
                                 <h3
                                     className="font-semibold text-lg text-blueGray-700"
                                 >
-                                    {subMainState.name}
+                                    {subMain.name}
                                 </h3>
                             </div>
                             <div className="mb-2 flex text-lg">
-                                <a href={`/admin/edit-main-category/${subMainState.id}`} className="block mr-2 hover:cursor-pointer">
+                                <a href={`/admin/edit-main-category/${subMain.id}`} className="block mr-2 hover:cursor-pointer">
                                     <EditTwoTone />
                                 </a>
                                 <Popconfirm
@@ -57,7 +40,7 @@ export default function CardMainSubCategory(props) {
                                 >
                                     <div
                                         className="mr-2 hover:cursor-pointer"
-                                        // onClick={() => handleDeleteMainCategory(subMainState.id)}
+                                        // onClick={() => handleDeleteMainCategory(subMain.id)}
                                     >
                                         <DeleteTwoTone />
                                     </div>
@@ -70,7 +53,7 @@ export default function CardMainSubCategory(props) {
                         {/* Projects table */}
                         <table className="items-center w-full bg-transparent border-collapse">
                             <thead>
-                                {subMainState.sub_category.length !== 0 &&
+                                {subMain.sub_category.length !== 0 &&
                                     <tr>
                                         <th
                                             className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"
@@ -92,7 +75,7 @@ export default function CardMainSubCategory(props) {
 
                             </thead>
                             <tbody>
-                                {subMainState.sub_category.length === 0 &&
+                                {subMain.sub_category.length === 0 &&
                                     <tr>
                                         <td
                                             className="px-6 text-center align-middle py-3 text-xs border-l-0 border-r-0 whitespace-nowrap font-semibold bg-blueGray-50 text-blueGray-500 border-blueGray-100"
@@ -102,7 +85,7 @@ export default function CardMainSubCategory(props) {
 
                                     </tr>
                                 }
-                                {subMainState.sub_category.map((item) => {
+                                {subMain.sub_category.map((item) => {
                                     return (
                                         <tr key={item.id} >
                                             <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">

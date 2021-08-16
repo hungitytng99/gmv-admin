@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 // components
-
+import 'antd/dist/antd.css';
 import CardListProducts from "components/Cards/CardListProducts";
 import { productService } from "data-services/product/index.js";
 import { mainCategoryService } from "data-services/category";
@@ -9,12 +8,11 @@ import FullPageLoading from "components/Loading/FullPageLoading";
 import { REQUEST_STATE } from "app-configs";
 import { notification } from 'antd';
 import { Input } from 'antd';
-import 'antd/dist/antd.css';
 const { Search } = Input;
 
 
-export default function ListProducts(props) {
-    const [listProducts, setListProducts] = useState({});
+export default function ListProducts() {
+    const [listProducts, setListProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {

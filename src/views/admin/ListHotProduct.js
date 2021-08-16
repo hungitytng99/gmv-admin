@@ -9,7 +9,7 @@ import { REQUEST_STATE } from "app-configs";
 import FullPageLoading from "components/Loading/FullPageLoading";
 
 export default function ListHotProduct() {
-    const [listProducts, setListProducts] = useState({});
+    const [listProducts, setListProducts] = useState([]);
     const [isReload, setIsReload] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
