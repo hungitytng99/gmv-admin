@@ -1,10 +1,11 @@
 import React from "react";
 // components
-import ProductDropdown from "components/Dropdowns/ProductDropdown";
-import { productService } from "data-services/product";
 
 export default function CardListInquiry(props) {
     const { listInquiry } = props;
+
+    console.log(listInquiry);
+
     return (
         <>
             <div
