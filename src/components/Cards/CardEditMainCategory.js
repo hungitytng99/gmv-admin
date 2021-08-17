@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // components
 
 export default function CardEditMainCategory(props) {
-    const { detailMainCategory } = props;
+    const { detailMainCategory, submitEditMainCategory } = props;
 
     const [, setIsReload] = useState(false);
     const validationSchema = Yup.object().shape({
