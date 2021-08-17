@@ -36,7 +36,8 @@ export const mainCategoryService = {
                 image: response.data?.url_image,
                 description: response.data?.description,
                 href: "/category/" + response.data?.id,
-                sub_category: response.data?.sub_category
+                sub_category: response.data?.sub_category,
+                sub_image: response.data?.sub_image || ''
             }
             return response;
         });
@@ -51,7 +52,8 @@ export const mainCategoryService = {
                 image: response.data?.url_image,
                 description: response.data?.description,
                 href: "/category/" + response.data?.id,
-                sub_category: response.data?.sub_category
+                sub_category: response.data?.sub_category,
+                sub_image: response.data?.sub_image || ''
             }
             return response;
         });

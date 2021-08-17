@@ -49,7 +49,7 @@ const CategoryDropdown = (props) => {
   return (
     <>
       <Dropdown overlay={menu} placement="bottomRight">
-        <div className="w-4 hover:cursor-pointer hover:text-lightBlue-500">
+        <div className="hover:cursor-pointer hover:text-lightBlue-500">
           <i className="fas fa-ellipsis-v"></i>
         </div>
       </Dropdown>

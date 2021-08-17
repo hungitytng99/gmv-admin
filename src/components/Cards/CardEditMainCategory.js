@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // components
 
 export default function CardEditMainCategory(props) {
-    const { detailMainCategory, submitEditMainCategory } = props;
+    const { detailMainCategory } = props;
 
     const [, setIsReload] = useState(false);
     const validationSchema = Yup.object().shape({
@@ -15,25 +15,32 @@ export default function CardEditMainCategory(props) {
         url_image: Yup.string()
             .required('This field is required')
             .url('This field must be a valid url'),
+        sub_image: Yup.string()
+            .required('This field is required')
+            .url('This field must be a valid url'),
     });
 
     const formik = useFormik({
         initialValues: {
             name: '',
             description: '',
-            url_image: ''
+            url_image: '',
+            sub_image: ''
         },
         onSubmit: (values) => {
-            submitEditMainCategory(values);
+            // submitEditMainCategory(values);
+            console.log(values);
         },
         validationSchema: validationSchema,
     });
 
     useEffect(() => {
+        console.log(detailMainCategory);
         if (detailMainCategory?.state === "SUCCESS") {
             formik.values.name = detailMainCategory.data.name;
             formik.values.description = detailMainCategory.data.description;
             formik.values.url_image = detailMainCategory.data.image;
+            formik.values.sub_image = detailMainCategory.data.sub_image;
             setIsReload(true);
         }
     }, [detailMainCategory])
@@ -47,7 +54,7 @@ export default function CardEditMainCategory(props) {
                             Main category
                         </h6>
                         <div className="flex flex-wrap">
-                            <div className="w-full lg:w-6/12 px-4">
+                            <div className="w-full lg:w-4/12 px-4">
                                 <div className="relative w-full mb-3">
                                     <label
                                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -69,7 +76,7 @@ export default function CardEditMainCategory(props) {
 
                                 </div>
                             </div>
-                            <div className="w-full lg:w-6/12 px-4">
+                            <div className="w-full lg:w-4/12 px-4">
                                 <div className="relative w-full mb-3">
                                     <label
                                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -87,6 +94,29 @@ export default function CardEditMainCategory(props) {
                                     />
                                     {formik.touched.url_image && formik.errors.url_image ? (
                                         <div className="text-rose-600">{formik.errors.url_image}</div>
+                                    ) : null}
+
+                                </div>
+                            </div>
+
+                            <div className="w-full lg:w-4/12 px-4">
+                                <div className="relative w-full mb-3">
+                                    <label
+                                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                    >
+                                        Sub image <span className="text-rose-600">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.sub_image}
+                                        autoComplete="off"
+                                        name="sub_image"
+                                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        placeholder="URL main image"
+                                    />
+                                    {formik.touched.sub_image && formik.errors.sub_image ? (
+                                        <div className="text-rose-600">{formik.errors.sub_image}</div>
                                     ) : null}
 
                                 </div>

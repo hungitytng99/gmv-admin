@@ -14,6 +14,9 @@ export default function CardAddMainCategory(props) {
         url_image: Yup.string()
             .url('This field must be a valid URL')
             .required('This field is required'),
+        sub_image: Yup.string()
+            .url('This field must be a valid URL')
+            .required('This field is required'),
     });
 
     return (
@@ -23,7 +26,7 @@ export default function CardAddMainCategory(props) {
                 <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                     <Formik
                         initialValues={{
-                            name: '', description: '', url_image: ''
+                            name: '', description: '', url_image: '', sub_image: ''
                         }}
                         validationSchema={mainCategorySchema}
                         onSubmit={async (values) => {
@@ -36,7 +39,7 @@ export default function CardAddMainCategory(props) {
                                     Main category
                                 </h6>
                                 <div className="flex flex-wrap">
-                                    <div className="w-full lg:w-6/12 px-4">
+                                    <div className="w-full lg:w-4/12 px-4">
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -47,13 +50,13 @@ export default function CardAddMainCategory(props) {
                                                 autoComplete="off"
                                                 name="name"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                placeholder="name" />
+                                                placeholder="Name" />
                                             {errors.name && touched.name ? (
                                                 <div className="text-rose-600">{errors.name}</div>
                                             ) : null}
                                         </div>
                                     </div>
-                                    <div className="w-full lg:w-6/12 px-4">
+                                    <div className="w-full lg:w-4/12 px-4">
                                         <div className="relative w-full mb-3">
                                             <label
                                                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -67,6 +70,23 @@ export default function CardAddMainCategory(props) {
                                                 placeholder="Url image" />
                                             {errors.url_image && touched.url_image ? (
                                                 <div className="text-rose-600">{errors.url_image}</div>
+                                            ) : null}
+                                        </div>
+                                    </div>
+                                    <div className="w-full lg:w-4/12 px-4">
+                                        <div className="relative w-full mb-3">
+                                            <label
+                                                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                            >
+                                                Url sub image <span className="text-rose-600">*</span>
+                                            </label>
+                                            <Field
+                                                autoComplete="off"
+                                                name="sub_image"
+                                                className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                placeholder="Url image" />
+                                            {errors.sub_image && touched.sub_image ? (
+                                                <div className="text-rose-600">{errors.sub_image}</div>
                                             ) : null}
                                         </div>
                                     </div>

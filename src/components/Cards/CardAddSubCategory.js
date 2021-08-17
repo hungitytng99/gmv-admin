@@ -69,7 +69,7 @@ export default function CardAddSubCategory(props) {
                                                 autoComplete="off"
                                                 name="name"
                                                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                placeholder="name" />
+                                                placeholder="Name" />
                                             {errors.name && touched.name ? (
                                                 <div className="text-rose-600">{errors.name}</div>
                                             ) : null}

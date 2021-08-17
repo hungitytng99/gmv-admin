@@ -7,8 +7,6 @@ import { mainCategoryService } from "data-services/category";
 import FullPageLoading from "components/Loading/FullPageLoading";
 import { REQUEST_STATE } from "app-configs";
 import { notification } from 'antd';
-import { Input } from 'antd';
-const { Search } = Input;
 
 
 export default function ListProducts() {
@@ -78,10 +76,6 @@ export default function ListProducts() {
         }
         setIsLoading(false);
     }
-    const onSearch = async (value) => {
-
-
-    };
 
     const handleSearch = (e) => {
         setSearchProduct(e.target.value);
