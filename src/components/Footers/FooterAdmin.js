@@ -11,7 +11,7 @@ export default function FooterAdmin() {
               <div className="text-sm text-blueGray-500 font-semibold py-1 text-center">
                 Copyright © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.creative-tim.com?ref=nr-footer-admin"
+                  href="https://www.giangminhviet.com"
                   className="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1"
                 >
                   Giang minh viet

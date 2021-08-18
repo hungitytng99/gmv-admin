@@ -31,13 +31,17 @@ export default function Login() {
     onSubmit: async (values) => {
       const response = await userService.signIn(values);
       if (response.state === REQUEST_STATE.ERROR) {
-        openNotificationWithIcon('error');
+        if (!response.data.response && response.data.message.indexOf("Network Error") !== -1) {
+          openNotificationWithIcon('error', "Network error", "There is a problem with server or your network connection");
+        } else {
+          openNotificationWithIcon('error');
+        }
       } else if (response.state === REQUEST_STATE.SUCCESS) {
         Cookies.set('token', response.data['access-token']);
         openNotificationWithIcon('success', "Login successfully!", "Wait a second...");
         setTimeout(() => {
           window.location.href = "/admin/list-products"
-        },500)
+        }, 500)
       }
     },
     validationSchema: signInSchema,

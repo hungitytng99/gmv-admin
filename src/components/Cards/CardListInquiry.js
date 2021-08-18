@@ -3,9 +3,6 @@ import React from "react";
 
 export default function CardListInquiry(props) {
     const { listInquiry } = props;
-
-    console.log(listInquiry);
-
     return (
         <>
             <div

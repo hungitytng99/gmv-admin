@@ -34,7 +34,6 @@ export default function CardEditMainCategory(props) {
     });
 
     useEffect(() => {
-        console.log(detailMainCategory);
         if (detailMainCategory?.state === "SUCCESS") {
             formik.values.name = detailMainCategory.data.name;
             formik.values.description = detailMainCategory.data.description;
