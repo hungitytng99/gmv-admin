@@ -1,11 +1,13 @@
 import React from "react";
 // components
 import ProductDropdown from "components/Dropdowns/ProductDropdown";
+import FullPageLoading from "components/Loading/FullPageLoading";
 
 export default function CardListProducts(props) {
   const { listProducts = [], handleDeleteProduct, handleSetHotProduct } = props;
   return (
     <>
+      {listProducts.length === 0 && <FullPageLoading />}
       <div
         className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white"
       >
@@ -97,7 +99,7 @@ export default function CardListProducts(props) {
                           {
                             product.image.map((img) => {
                               return (
-                                <img key={img}
+                                <img key={img + Math.random() * 10000000}
                                   src={img}
                                   alt="..."
                                   className="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow"

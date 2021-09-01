@@ -18,3 +18,21 @@ export const apiSignIn = async (params) => {
         };
     }
 };
+
+export const apiChangePwd = async (params) => {
+    try {
+        const response = await POST("/user/change-password", params, { isFullPath: false });
+        return {
+            state: REQUEST_STATE.SUCCESS,
+            data: response
+        };
+
+    } catch (error) {
+        console.log("error", error);
+        return {
+            state: REQUEST_STATE.ERROR,
+            data: error
+        };
+    }
+};
+
