@@ -5,29 +5,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
-  const [changePwdModal, setChangePwdmodal] = React.useState(false);
-  const [confirmLoading, setConfirmLoading] = React.useState(false);
-
-  const showModal = () => {
-    setChangePwdmodal(true);
-  };
-
-  const handleOkModal = () => {
-
-    // setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    console.log("Change pwd");
-    // setTimeout(() => {
-    //   setVisible(false);
-    //   setConfirmLoading(false);
-    // }, 2000);
-  };
-
-  const handleCancelModal = () => {
-    console.log('Clicked cancel button');
-    setChangePwdmodal(false);
-  };
-
   const handleLogout = () => {
     jsCookie.remove('token');
     window.location.href = '/auth/login';
@@ -53,7 +30,6 @@ export default function Sidebar() {
           </Link>
           {/* User */}
           <div className="block md:hidden">
-            <button onClick={() => showModal()} className="bg-gray-500 text-white px-4 py-1 rounded-md focus:outline-none"> Change password</button>
             <button onClick={() => handleLogout()} className="bg-gray-500 text-white px-4 py-1 rounded-md focus:outline-none"> Logout</button>
           </div>
           {/* Collapse */}
@@ -160,15 +136,7 @@ export default function Sidebar() {
           </div>
         </div>
       </nav>
-      <Modal
-        title="Title"
-        visible={changePwdModal}
-        onOk={handleOkModal}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancelModal}
-      >
-        <p>Change password</p>
-      </Modal>
+     
     </>
   );
 }
