@@ -10,7 +10,7 @@ import FullPageLoading from "components/Loading/FullPageLoading";
 export default function AddCategory(props) {
     const [isLoading, setIsLoading] = useState(false);
 
-    const addMainCategory = async (values) => {
+    const addMainCategory = async (values, resetForm) => {
         setIsLoading(true);
         const response = await mainCategoryService.createMainCategory(values);
         if (response.state === REQUEST_STATE.SUCCESS) {
@@ -19,6 +19,7 @@ export default function AddCategory(props) {
                 description:
                     'Add main category successfully',
             });
+            resetForm();
         }
 
         if (response.state === REQUEST_STATE.ERROR) {
@@ -31,7 +32,7 @@ export default function AddCategory(props) {
         setIsLoading(false);
     }
 
-    const addSubCategory = async (values) => {
+    const addSubCategory = async (values, resetForm) => {
         setIsLoading(true);
         const response = await mainCategoryService.createSubCategory(values);
         if (response.state === REQUEST_STATE.SUCCESS) {
@@ -40,6 +41,7 @@ export default function AddCategory(props) {
                 description:
                     'Update sub category successfully',
             });
+            resetForm();
         }
 
         if (response.state === REQUEST_STATE.ERROR) {

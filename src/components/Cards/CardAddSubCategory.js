@@ -46,10 +46,10 @@ export default function CardAddSubCategory(props) {
                             name: ''
                         }}
                         validationSchema={subCategorySchema}
-                        onSubmit={async (values) => {
+                        onSubmit={async (values, { resetForm }) => {
                             // same shape as initial values
                             const params = { main_category_id: mainCategorySelected.value, ...values }
-                            addSubCategory(params);
+                            addSubCategory(params , resetForm);
                         }}
                     >
                         {({ errors, touched }) => (

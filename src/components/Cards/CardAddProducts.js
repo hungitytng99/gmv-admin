@@ -81,7 +81,7 @@ export default function CardAddProducts() {
                             price: '', material: '',
                         }}
                         validationSchema={productSchema}
-                        onSubmit={async (values) => {
+                        onSubmit={async (values, {resetForm}) => {
                             // same shape as initial values
                             const params = { category_id: subCategorySelected.value, size: 0, ...values };
                             setIsLoading(true);
@@ -92,6 +92,7 @@ export default function CardAddProducts() {
                                     description:
                                         'Add product successfully',
                                 });
+                                resetForm();
                             }
 
                             if (response.state === REQUEST_STATE.ERROR) {
@@ -104,7 +105,7 @@ export default function CardAddProducts() {
                             setIsLoading(false);
                         }}
                     >
-                        {({ errors, touched }) => (
+                        {({ errors, touched, resetForm }) => (
                             <Form>
                                 <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                                     Product Information

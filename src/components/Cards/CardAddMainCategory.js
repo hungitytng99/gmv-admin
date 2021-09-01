@@ -29,8 +29,8 @@ export default function CardAddMainCategory(props) {
                             name: '', description: '', url_image: '', sub_image: ''
                         }}
                         validationSchema={mainCategorySchema}
-                        onSubmit={async (values) => {
-                            addMainCategory(values);
+                        onSubmit={async (values, { resetForm }) => {
+                            addMainCategory(values, resetForm);
                         }}
                     >
                         {({ errors, touched }) => (
